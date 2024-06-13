@@ -1,0 +1,22 @@
+@startuml
+actor User
+participant "TextEditor" as Editor
+participant "File" as File
+participant "TextFile" as TextFile
+
+User -> Editor: openFile(name)
+Editor -> File: open()
+File --> Editor: fileOpened
+
+User -> Editor: editFile(file)
+Editor -> TextFile: highlightKeywords()
+TextFile --> Editor: keywordsHighlighted
+
+User -> Editor: saveFile(file)
+Editor -> File: save()
+File --> Editor: fileSaved
+
+User -> Editor: printFile(file)
+Editor -> File: print()
+File --> Editor: filePrinted
+@enduml

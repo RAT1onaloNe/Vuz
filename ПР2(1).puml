@@ -1,0 +1,38 @@
+@startuml
+package "Текстовый редактор" {
+    class File {
+        +name: String
+        +content: String
+        +open(): void
+        +save(): void
+        +print(): void
+    }
+
+    class TextFile {
+        +highlightKeywords(): void
+    }
+
+    class User {
+        +createFile(name: String): File
+        +editFile(file: File): void
+        +saveFile(file: File): void
+        +openFile(name: String): File
+        +printFile(file: File): void
+    }
+
+    class Admin {
+        +configureEditor(settings: Map): void
+    }
+
+    class EditorSettings {
+        +theme: String
+        +fontSize: int
+        +setTheme(theme: String): void
+        +setFontSize(size: int): void
+    }
+
+    File <|-- TextFile
+    User "1" *-- "0..*" File : aggregation
+    Admin "1" *-- "1" EditorSettings : composition
+}
+@enduml
